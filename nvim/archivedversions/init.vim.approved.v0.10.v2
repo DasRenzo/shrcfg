@@ -1,0 +1,123 @@
+" Neovim with "PLUGINS" enabled, optimized and tested for: "PPA-Ubuntu-NVIM-Stable"; maintained on host ACER by RPA
+
+" Basic settings
+set number
+set relativenumber
+set tabstop=4
+set shiftwidth=4
+set autoindent
+set mouse=
+colorscheme slate
+
+" search recursively with find
+set path+=**
+
+" Set mapleader
+let mapleader="\<Space>"
+
+" Remaps to leaderkey
+nmap \ <leader>
+nmap , <leader>
+
+" Map <Ctrl-c> to <ESC>
+nnoremap <C-c> <Esc>
+inoremap <C-c> <Esc>
+nnoremap Q <nop>
+
+" Cycle through buffers
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
+
+" Map m to v ('m' short for 'marking')
+nnoremap m v
+xnoremap m <Esc>
+
+" Vangnet-mechanismen
+set swapfile
+set dir=~/.vimswap
+set backup
+set backupdir=~/.vimbck
+set backupext=.vimbck
+
+" For each delete/yank: also fill the general clipboardregister named: "+
+set clipboard=unnamedplus
+
+" Insert an empty new line without entering insert mode (stay in normal mode)
+nnoremap <Leader>o o<Esc>
+nnoremap <Leader>O O<Esc>
+
+" Remap to 'no-operation' on dangerous 'pause-behaviour' when pressing: <C-z>
+noremap <C-z> <nop>
+noremap! <C-z> <nop>
+
+" Move highlighted words/lines in visual mode (mode v or V)
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Remaps for centering into the middle of the screen, after a vertical motion
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap { {zz
+nnoremap } }zz
+
+" Paste the yank-register "0 (for scenario: multiple select-paste-delete)
+nnoremap <leader>p "0p
+nnoremap <leader>P "0P
+
+" Scrolloff to a set value (set minimum numbers of lines below cursor, while scrolling)
+set scrolloff=10
+
+" Highlight search-argument, toggle F3 for off/on
+set hlsearch
+nnoremap <F3> :set hlsearch!<CR>
+
+" Enable incremental search which allows for 'pattern search'
+set incsearch
+
+" Remaps for netrw; neovim's native file-explorer
+nnoremap <leader>e :ex .<CR>
+nnoremap <leader>t :tab new<CR>
+nnoremap <leader>q :bd<CR>
+nnoremap <leader>z :quit<CR>
+nnoremap <leader>x :x<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>g :bd!<CR>
+
+" Vim-plug 'Plugin-manager', config:
+" Vim-plug autoload-file containing its code: ~/.local/share/nvim/site/autoload/plug.vim
+" Plugins-path for installed plugs: ~/.local/share/nvim/plugged
+call plug#begin()
+	Plug 'preservim/nerdtree' " Nice filetree; I use it for the bookmark-function, which is missing in vim's native 'netrw'
+	Plug 'mbbill/undotree' " Provides undo-history in aux-files; extends on vim's native Undofile
+	Plug 'vim-airline/vim-airline' "Statusbar
+	Plug 'vim-airline/vim-airline-themes' "Airline themes
+call plug#end()
+
+" Settings for Nerdtree
+let NERDTreeShowHidden=1
+let NERDTreeShowBookmarks=1
+nnoremap <leader>n :NERDTreeToggle<CR>
+
+" Settings for UndoTree
+" Make .undodir and set undofile
+if has("persistent_undo")
+   let target_path = expand('~/.undodir')
+    " create the directory and any parent directories
+    " if the location does not exist.
+    if !isdirectory(target_path)
+        call mkdir(target_path, "p", 0700)
+    endif
+
+    let &undodir=target_path
+    set undofile
+endif
+
+nnoremap <F5> :UndotreeToggle<CR>
+
+" Settings for Airline
+" Tested_and_approved_by_rpa: kolor, light, understated, base16_ashes
+let g:airline_theme='kolor'
+let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers at top
+

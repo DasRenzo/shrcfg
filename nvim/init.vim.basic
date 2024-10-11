@@ -1,0 +1,220 @@
+" No plugs allowed; aka "INIT.VIM.BASIC"; maintained on "ACER"
+
+" Disable (healthcheck on) providers
+let g:loaded_ruby_provider = 0
+let g:loaded_node_provider = 0
+let g:loaded_perl_provider = 0
+let g:loaded_python3_provider = 0
+
+" Source vim-configfile; show vars from vimcmdline :echo $MYVIMRC :echo $VIMRUNTIME
+nnoremap <Leader>8 :w \| :source $MYVIMRC \| :set hlsearch! \| :echo 'sourced vimrc'<CR>
+
+" Trailing whitespaces; to toggle use F4
+set nolist
+set listchars=tab:>\ ,trail:-,nbsp:+,eol:$
+nnoremap <F4> :set list!<CR>
+
+" Mouse setting
+" value 'a' means mouse-support enabled ==> needed in alacritty
+" no value means 'disabled' ==> nicer in gnome-terminal for its context-menu
+set mouse=
+
+" Basic settings
+set number
+set relativenumber
+set tabstop=4
+set shiftwidth=4
+set autoindent
+set linebreak
+
+" Syntax on
+syntax enable
+syntax on
+
+" User sets here if TERMGUICOLORS are wanted
+let g:user_wants_tgc = 1 "value 0 disables; any other value enables
+
+" Function RPA_CS
+" For setting the colorscheme; approved args are: sonokai, slate, default
+function! RPA_CS(arg)
+if a:arg == "sonokai"
+	colorscheme sonokai
+elseif a:arg == "slate"
+	colorscheme slate
+else
+	colorscheme default
+endif
+if g:user_wants_tgc != 0
+	" echo "Yes, we are using TERMGUICOLORS, and colorscheme:" | colorscheme
+	set termguicolors
+	hi comment guifg=#f4c8f9
+	hi visual  guifg=#000000 guibg=#ffffff
+else
+	" echo "We are using old CTERM, and colorscheme:" | colorscheme
+	set notermguicolors
+	" approved values for <comment ctermfg>
+	" 3=brownish; 7=ecru; 9=reddish
+	" 10=brilliantgreen; 11=orange; 12=blue
+	" 13=purple; 14=turkois; 15=brilliantecru
+	hi comment ctermfg=10
+	hi visual  ctermfg=black ctermbg=white
+endif
+endfunction
+call RPA_CS("default")
+
+" Remaps to Visual-Block-mode (Columns) 
+nnoremap <leader>b <C-v>
+xnoremap bb <Esc>
+
+" Remaps to leaderkey; sysdefault is backslash \
+nmap , <leader>
+
+" Map <Ctrl-c> to <nop>, safety to prevent killing processes unintentionally
+nnoremap <C-c> <nop>
+inoremap <C-c> <nop>
+
+" Map <Ctrl-f> to <nop>, normaliter 'pagedown'; gedaan ivm tmux leader-key
+nnoremap <C-f> <nop>
+xnoremap <C-f> <nop>
+
+" Map <Ctrl-j> to j 
+nnoremap <C-j> j
+xnoremap <C-j> j
+
+" Maak Q (ie capital Q) onschadelijk in normal mode
+nnoremap Q <nop>
+
+" Maak q (ie kleine q) onschadelijk in normal mode
+nnoremap q <nop>
+
+" Remap to 'no-operation' on dangerous 'pause-behaviour' when pressing: <C-z>
+" Maar in de nnoremap-toestand herleid naar :quit
+noremap! <C-z> <nop>
+nnoremap <C-z> :quit<CR>
+nnoremap <C-b> :suspend<CR>
+
+" Jumping (was geen succes)
+" Two 'backticks': alternate between current and last position of point
+" Just use the basic commands :jumps and :clearjumps
+nnoremap <C-p> <nop>
+nnoremap <C-n> <nop>
+
+" Show registers
+nnoremap <leader>r :reg<CR>
+
+" Cycle through tabs
+nnoremap <S-Tab> :tabnext<CR>
+
+" Cycle through buffers
+nnoremap <S-PageUp> :bnext<CR>
+
+" Remaps for visual-mode AND visual-line-mode
+nnoremap m v
+xnoremap m <Esc>
+nnoremap z v
+xnoremap z <Esc>
+nnoremap v V
+xnoremap v <Esc>
+
+" Vangnet-mechanismen
+set swapfile
+set dir=~/.vimswap
+set backup
+set backupdir=~/.vimbck
+set backupext=.vimbck
+
+" For each delete/yank: also fill the general clipboardregister named: "+ (it invokes mirroring the defaultbuffer 'double quote')
+set clipboard=unnamedplus
+
+" Insert an empty new line BELOW, without entering insert mode (STAY in normal mode)
+nnoremap <leader>o o<Esc>
+
+" Move block of highlighted words/lines in visual mode (mode v or V)
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Remaps for vertical centering the screen, by adding zz
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+" To next searchhit (n) and center
+nnoremap n nzz
+" To previous searchhit (N) and center
+nnoremap N Nzz
+nnoremap { {zz
+nnoremap } }zz
+
+" Paste the yank-register (for scenario: select && multiple "paste-delete")
+nnoremap <leader>p "0p
+nnoremap <leader>P "0P
+
+" Scrolloff to a set value (set minimum numbers of lines below cursor, while scrolling)
+set scrolloff=10
+
+" Highlight search-argument, toggle F3 for off/on
+set hlsearch
+nnoremap <F3> :set hlsearch!<CR>
+
+" Enable incrementalsearch
+set incsearch
+
+" Remaps for basic buffer-handling
+nnoremap <leader>e :Ex<CR>
+nnoremap <leader>t :tab new<CR>
+nnoremap <leader>q :bd<CR>
+nnoremap <leader>s :w<CR>
+nnoremap <leader>w <nop>
+nnoremap <leader>x :x<CR>
+nnoremap <leader>g :bd!<CR>
+nnoremap <leader>z :quit<CR>
+
+" Popular ones under ctrl (watch out for different functions of single s and x; hold the ctrl-key)
+nnoremap <C-q> :bd<CR>
+nnoremap <C-s> :w<CR>
+nnoremap <C-x> :x<CR>
+
+" Remaps for jumping to end-of-file
+nnoremap ff G
+
+" Remap for commenting (das "Kommentar); also a flexible way of throwing in a bunch of double quote(s)
+nnoremap <leader>k I" <Esc><End>
+
+" Insert today's date
+nnoremap <M-t> :r!date<CR>
+
+" Show a cursorline
+set cursorline
+
+
+" ============================
+" JUST SOME REMINDERS AND TIPS
+" ============================
+
+" C-w arrows 	move between splits/panes
+" C-w-v			create vertical split (zelfde als :vsplit)
+" C-w-s			create horizontal split (zelfde als :split)
+" C-w-q			quit current split
+
+" Do a quicksearch, via / of ?
+" / zoek van boven naar beneden (n is next down; N andere richting)
+" ? zoek van beneden naar boven (n is next up; N andere richting)
+
+" Zoek en vervang:
+" Shift-3 op eerste letter van woord, zoekt alle occurences van het hele woord
+
+" Let op de range (% staat voor hele buffer)
+" In heel de buffer :%s/zoek/vervang/gc (g=all occurences, c=confirm)
+" Of alleen binnen een selectie :<selectie-aanduiding>s/zoek/vervang/gc
+" Als zoekterm kun je ook een exacte zoekterm opgeven; zie hierna
+
+" Exacte-match-search: / \< searchstring \>
+" Maar dan alles aan elkaar typen
+" Terughalen eerdere exacte argumenten: / (en 'pijltje omhoog to browse history')
+
+" To repeat last command, just use a '.' in normal mode; handy for commenting
+
+" Visual-block-mode-insert-trick: select-columns, shift-i, insert-your-string, ESC 
+" Visual-block-mode-append-trick: select-columns, shift-a, append-your-string, ESC
+
+" Voor het openen van een weblink, met cursor op de link, enter: gx
+" Feature van netrw; zie ook de helpfile in nvim :help netrw-gx
+

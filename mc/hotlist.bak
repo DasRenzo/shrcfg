@@ -1,0 +1,7 @@
+ENTRY "/home/rens" URL "/home/rens"
+ENTRY "/home/rens/.local" URL "/home/rens/.local"
+ENTRY "/home/rens/.config" URL "/home/rens/.config"
+ENTRY "/aux" URL "/aux"
+ENTRY "/jau" URL "/jau"
+ENTRY "/shrcfg" URL "/shrcfg"
+ENTRY "/tmp" URL "/tmp"

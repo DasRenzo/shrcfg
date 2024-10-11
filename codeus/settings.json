@@ -1,0 +1,8 @@
+{
+    "workbench.startupEditor": "none",
+    "workbench.sideBar.location": "right",
+    "editor.minimap.enabled": false,
+    "window.customTitleBarVisibility": "auto",
+    "workbench.activityBar.location": "hidden",
+    "editor.wordWrap": "wordWrapColumn"
+}

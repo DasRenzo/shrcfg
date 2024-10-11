@@ -1,0 +1,127 @@
+" Server-PLUGGED-FULL-INIT.VIM-file op: UBS-01; versie 27/09/2023_01
+
+" Basic settings
+set number
+set relativenumber
+set tabstop=4
+set shiftwidth=4
+set autoindent
+set mouse=
+colorscheme slate
+
+" search recursively with find
+set path+=**
+
+" Set mapleader
+let mapleader="\<Space>"
+
+" Remaps to leaderkey
+nmap \ <leader>
+nmap , <leader>
+
+" Map <Ctrl-c> to <ESC>
+nnoremap <C-c> <Esc>
+inoremap <C-c> <Esc>
+nnoremap Q <nop>
+
+" Cycle through buffers
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
+
+" Map m to v ('m' short for 'marking')
+nnoremap m v
+xnoremap m <Esc>
+
+" Vangnet-mechanismen
+set swapfile
+set dir=~/.vimswap
+set backup
+set backupdir=~/.vimbck
+set backupext=.vimbck
+
+" For each delete/yank: also fill the general clipboardregister named: "+
+set clipboard=unnamedplus
+
+" Insert an empty new line without entering insert mode (stay in normal mode)
+nnoremap <Leader>o o<Esc>
+nnoremap <Leader>O O<Esc>
+
+" Remap to 'no-operation' on dangerous 'pause-behaviour' when pressing: <C-z>
+noremap <C-z> <nop>
+noremap! <C-z> <nop>
+
+" Move highlighted words/lines in visual mode (mode v or V)
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Remaps for centering into the middle of the screen, after a vertical motion
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap { {zz
+nnoremap } }zz
+
+" Paste the yank-register "0 (for scenario: multiple select-paste-delete)
+nnoremap <leader>p "0p
+nnoremap <leader>P "0P
+
+" Scrolloff to a set value (set minimum numbers of lines below cursor, while scrolling)
+set scrolloff=10
+
+" Highlight search-argument, toggle F3 for off/on
+set hlsearch
+nnoremap <F3> :set hlsearch!<CR>
+
+" Enable incremental search which allows for 'pattern search'
+set incsearch
+
+" Remaps for netrw; neovim's native file-explorer
+nnoremap <leader>e :ex .<CR>
+nnoremap <leader>t :tab new<CR>
+nnoremap <leader>q :bd<CR>
+nnoremap <leader>z :quit<CR>
+nnoremap <leader>x :x<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>g :bd!<CR>
+
+" Vim-plug 'Plugin-manager', config:
+" Autoload-file with the actual code: ~/.local/share/nvim/site/autoload/plug.vim
+" Plugins-path: ~/.local/share/nvim/plugged
+call plug#begin()
+	Plug 'preservim/nerdtree' " Nice filetree; I use it for the bookmark-function, which is missing in vim's native 'netrw'
+	Plug 'mbbill/undotree' " Provides undo-history in aux-files; extends on vim's native Undofile
+	Plug 'nvim-lua/plenary.nvim' " Required by Telescope
+	Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' } " Fuzzysearcher. Packages: 'fd-find', 'ripgrep'. Plug: 'treesitter'
+	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " A highlighter and parser
+call plug#end()
+
+" Lets for Nerdtree
+let NERDTreeShowHidden=1
+let NERDTreeShowBookmarks=1
+
+" Remap for Nerdtree
+nnoremap <leader>n :NERDTreeToggle<CR>
+
+" Undotree van mbbill; a plugin leveraging neovim's own Undofile-feature
+" Make undodir and set undofile
+if has("persistent_undo")
+   let target_path = expand('~/.undodir')
+    " create the directory and any parent directories
+    " if the location does not exist.
+    if !isdirectory(target_path)
+        call mkdir(target_path, "p", 0700)
+    endif
+
+    let &undodir=target_path
+    set undofile
+endif
+
+" Remap for UndotreeToggle 
+nnoremap <F5> :UndotreeToggle<CR>
+
+" Telescope remaps
+nnoremap <leader>t <cmd>Telescope find_files<cr>
+nnoremap <leader>r <cmd>Telescope live_grep<cr>
+
+" Treesitter
