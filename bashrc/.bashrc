@@ -24,16 +24,16 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 # convenience-aliases
-alias secdoc='nvim /aux/kbrpa/documentatie/security.txt'
-alias netdoc='nvim /aux/kbrpa/documentatie/networking.txt'
+alias secdoc='nvim /auks/kbrpa/documentatie/security.txt'
+alias netdoc='nvim /auks/kbrpa/documentatie/networking.txt'
 
 # use 'gio trash' for removing files/dirs in Terminal to a user's Trashcan; works recursively; evt uitbreidbaar met -f (force)
 alias tr='gio trash'
 
 # backup-scripts
-alias bacgd='/aux/scripts/produktie/backup_to_gd.sh'
-alias bacflash='/aux/scripts/produktie/backup_to_flash.sh'
-alias bacserver='/aux/scripts/produktie/backup_to_server.sh'
+alias bacgd='/auks/scripts/produktie/backup_to_gd.sh'
+alias bacflash='/auks/scripts/produktie/backup_to_flash.sh'
+alias bacserver='/auks/scripts/produktie/backup_to_server.sh'
 
 # cd-aliases
 alias cd..='cd ..'
@@ -41,15 +41,14 @@ alias ..='cd ..'
 alias cd...='cd .. && cd ..'
 alias ...='cd .. && cd ..'
 
-alias aux='cd /aux && ls'
-alias srpa='cd /aux/scripts/produktie && ls'
-alias frpa='cd /aux/scripts/produktie/firewall && ls'
+alias auks='cd /auks && ls'
+alias srpa='cd /auks/scripts/produktie && ls'
+alias frpa='cd /auks/scripts/produktie/firewall && ls'
 alias home='cd ~ && ls'
 alias jau='cd /jau && ls'
 alias shrcfg='cd /shrcfg && ls'
 
-alias doc='cd /aux/kbrpa/documentatie && ls'
-alias mypscripts='cd /aux/scripts/produktie && ls'
+alias doc='cd /auks/kbrpa/documentatie && ls'
 alias phpb='cd /opt/lampp/htdocs/phpbook && ls'
 alias scr='cd ~/Pictures/Screenshots && ls'
 
@@ -63,8 +62,7 @@ alias vimve='nvim ~/.config/broot/verbs.hjson'
 alias vimki='nvim ~/.config/kitty/kitty.conf'
 
 # rpa-lijstjes
-alias gezondheid='emacs /aux/gezondheid/health.txt'
-alias studie='nvim /aux/studie/studie.tdw'
+alias studie='nvim /auks/studie/studie.tdw'
 
 # bunch of aliases
 alias vim='nvim'

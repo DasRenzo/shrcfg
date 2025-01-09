@@ -20,7 +20,10 @@ source "/home/rens/.fzf/shell/completion.bash"
 
 # If fd exists; we use it as the search-engine and set some nice options.
 # Otherwise with the standard value in fzf-default (ev), fzf uses 'find' as its search-engine, lacking some options (view: symlinks, dotfiles)
-# So install 'fdfind' as well.
+# Instructions for package fd-find:
+# sudo apt install fd-find (let op: package heet 'fd-find', maar de binary heet 'fdfind')
+# dan vanuit /usr/bin: sudo ln -s /usr/bin/fdfind fd
+# test of commando 'fd' nu werkt, want deze naam gebruiken we hieronder
 
 if type fd &>/dev/null; then
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude proc --exclude snap --exclude .cache --exclude .undodir --exclude .git 2> /dev/null'

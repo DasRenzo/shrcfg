@@ -93,7 +93,7 @@ shell_patterns=0
         tar cf - "$Pwd" | zstd -f > "$tar.tar.zst" && \
         echo "../$tar.tar.zst created."
 
-8       Zip the current subdirectory (.zip)
+8       Zip all files in current directory by rpa (.zip)
         Pwd=`basename %d /`
         echo -n "Name of the zipped file (without extension) [$Pwd]: "
         read zip
@@ -376,6 +376,6 @@ C       Convert gz<->bz2, tar.gz<->tar.bz2 & tgz->tar.bz2
 o       Open next a free console
         open -s -- sh
 
-t       Trash dir or file
+t       Trash dir or file by rpa
         gio trash %f
 
