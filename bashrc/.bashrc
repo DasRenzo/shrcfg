@@ -231,8 +231,10 @@ LS_COLORS=$LS_COLORS:'di=1;36:'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Broot and br
-# Running broot for the first time, makes the user integrate the br shellfunction, or refuse/reject it
-# The shellfunction 'br' can be installed at any time by typing: broot --install (as the loggedin user)
+# Running broot for the first time, makes the user run the integrate for the "br-shellfunction", or refuse/reject it
+# The shellfunction 'br' can be installed at any time by typing: "broot --install" (as the loggedin user)
+# Het voegt een source-regel toe in .bashrc zoals het tweede deel hieronder (de toevoeging is dus overbodig en kun je weghalen)
+# Symlink the broot-config-file en verb-file in ~/.config/broot naar /shrcfg/broot
 # If br-shellfunction exists, source it:
 [ -f ~/.config/broot/launcher/bash/br ] && source ~/.config/broot/launcher/bash/br
 

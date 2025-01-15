@@ -58,9 +58,17 @@ verbs: [
     }
 
     {
-        invocation: "jau"
+        invocation: "auks"
         keys: [
                 F7
+              ]
+        internal: ":focus /auks"
+    }
+
+    {
+        invocation: "jau"
+        keys: [
+                F8
               ]
         internal: ":focus /jau"
     }
@@ -68,7 +76,7 @@ verbs: [
     {
         invocation: "shrcfg"
         keys: [
-                F8
+                F9
               ]
         internal: ":focus /shrcfg"
     }
