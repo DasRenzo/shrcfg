@@ -1,8 +1,15 @@
 {
-    "workbench.startupEditor": "none",
-    "workbench.sideBar.location": "right",
-    "editor.minimap.enabled": false,
     "window.customTitleBarVisibility": "auto",
-    "workbench.activityBar.location": "hidden",
-    "editor.wordWrap": "wordWrapColumn"
+    "workbench.activityBar.location": "top",
+    "workbench.sideBar.location": "right",
+    "explorer.confirmDragAndDrop": false,
+    "chat.editing.alwaysSaveWithGeneratedChanges": true,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "editor.linkedEditing": true,
+    "editor.renderWhitespace": "trailing",
+    "editor.occurrencesHighlight": "off",
+    "workbench.colorTheme": "Default Dark+",
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }

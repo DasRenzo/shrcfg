@@ -1,16 +1,12 @@
 // Place your key bindings in this file to override the defaults
 [
     {
-        "key": "shift+alt+k",
+        "key": "ctrl+meta+k",
         "command": "workbench.action.openGlobalKeybindings"
     },
     {
         "key": "ctrl+k ctrl+s",
         "command": "-workbench.action.openGlobalKeybindings"
-    },
-    {
-        "key": "shift+alt+l",
-        "command": "livePreview.start.externalPreview.atFile"
     },
     {
         "key": "ctrl+shift+down",
@@ -35,5 +31,47 @@
     {
         "key": "ctrl+insert",
         "command": "workbench.action.files.saveFiles"
+    },
+    {
+        "key": "shift+backspace",
+        "command": "code-runner.run"
+    },
+    {
+        "key": "ctrl+alt+n",
+        "command": "-code-runner.run"
+    },
+    {
+        "key": "ctrl+meta+b",
+        "command": "editor.action.toggleColumnSelection"
+    },
+    {
+        "key": "ctrl+w",
+        "command": "workbench.action.terminal.kill",
+        "when": "terminalFocus && terminalHasBeenCreated"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+    },
+    {
+        "key": "ctrl+meta+c",
+        "command": "workbench.action.chat.openEditSession",
+        "when": "chatEditingParticipantRegistered && view != 'workbench.panel.chat.view.edits'"
+    },
+    {
+        "key": "ctrl+shift+alt+i",
+        "command": "-workbench.action.chat.openEditSession",
+        "when": "chatEditingParticipantRegistered && view != 'workbench.panel.chat.view.edits'"
+    },
+    {
+        "key": "ctrl+meta+c",
+        "command": "workbench.panel.chatEditing",
+        "when": "workbench.panel.chat.view.edits.active"
+    },
+    {
+        "key": "ctrl+shift+alt+i",
+        "command": "-workbench.panel.chatEditing",
+        "when": "workbench.panel.chat.view.edits.active"
     }
 ]
