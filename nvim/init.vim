@@ -4,6 +4,11 @@
 let $INIT_VIM_BASIC_PATH='/shrcfg/nvim/init.vim.basic'
 source $INIT_VIM_BASIC_PATH
 
+" VimWiki Ctrl-i of Tab overschrijft Jumping-werking met 'NextWikiLink'
+" Hieronder een andere kb, zodat basic jumping Ctrl-o Ctrl-i werkt
+" Only affects VimWiki directories or extensions
+nmap <C-w>t <Plug>VimwikiNextLink
+
 " Vim-plug 'Plugin-manager', config:
 " Plug.vim code-file, to be autoloaded, should reside here: ~/.local/share/nvim/site/autoload/plug.vim
 " Plugins-path for installed plugs: ~/.local/share/nvim/plugged

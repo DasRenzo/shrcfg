@@ -11,5 +11,6 @@
     "workbench.colorTheme": "Default Dark+",
     "[html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "editor.minimap.enabled": false
 }

@@ -1,4 +1,32 @@
-" No plugs allowed; aka "INIT.VIM.BASIC"; maintained on "ACER"
+" INIT.VIM.BASIC
+" No plugs allowed; maintained on "ACER"
+
+" Redraw the screen and clear messages: ctrl-l or :mode
+
+" Undo en redo via: u resp ctrl-r
+
+" Quicksearch, via / of ?
+" / zoek van boven naar beneden (n is next down; N andere richting)
+" ? zoek van beneden naar boven (n is next up; N andere richting)
+
+" Zoek occurences woord
+" in normal mode * (Shift-8) op letter van woord, zoekt volgende occurence
+" in normal mode # (Shift-3) op letter van woord, zoekt vorige occurence
+" n en N handiger voor 'volgende' resp. 'vorige'
+
+" Use n% to jump to the n-th percent of the buffer
+" dus ga naar het midden van de buffer via: 50%
+
+" Jumplist; zie ook :h jump-motions
+" overview :jumps
+" two 'backticks': alternate between current and last position of point
+" ctrl-o (jump to older position, prepend with count)
+" ctrl-i (jump to newer position, prepend with count)
+
+" Changes
+" changelist for overview :changes
+" g; (go to [count] older position in change list
+" g, (go to [count] newer position in change list
 
 " Disable (healthcheck on) providers
 let g:loaded_ruby_provider = 0
@@ -7,7 +35,7 @@ let g:loaded_perl_provider = 0
 let g:loaded_python3_provider = 0
 
 " Source vim-configfile; show vars from vimcmdline :echo $MYVIMRC :echo $VIMRUNTIME
-nnoremap <Leader>8 :w \| :source $MYVIMRC \| :set hlsearch! \| :echo 'sourced vimrc'<CR>
+nnoremap <Leader>8 :w \| :source $MYVIMRC \| :set hlsearch! \| :echo 'sourced vimrc'<CR><CR>
 
 " Trailing whitespaces; to toggle use F4
 set nolist
@@ -93,9 +121,7 @@ noremap! <C-z> <nop>
 nnoremap <C-z> :quit<CR>
 nnoremap <C-b> :suspend<CR>
 
-" Jumping (was geen succes)
-" Two 'backticks': alternate between current and last position of point
-" Just use the basic commands :jumps and :clearjumps
+" disable jump/move to previous and next line
 nnoremap <C-p> <nop>
 nnoremap <C-n> <nop>
 
@@ -111,8 +137,6 @@ nnoremap <S-PageUp> :bnext<CR>
 " Remaps for visual-mode AND visual-line-mode
 nnoremap m v
 xnoremap m <Esc>
-nnoremap z v
-xnoremap z <Esc>
 nnoremap v V
 xnoremap v <Esc>
 
@@ -172,8 +196,10 @@ nnoremap <C-q> :bd<CR>
 nnoremap <C-s> :w<CR>
 nnoremap <C-x> :x<CR>
 
-" Remaps for jumping to end-of-file
-nnoremap ff G
+" Remaps for jumping to begin-middle-end of file
+nnoremap ff gg
+nnoremap gg 50%
+nnoremap zz G
 
 " Remap for commenting (das "Kommentar); also a flexible way of throwing in a bunch of double quote(s)
 nnoremap <leader>k I" <Esc><End>
@@ -193,13 +219,6 @@ set cursorline
 " C-w-v			create vertical split (zelfde als :vsplit)
 " C-w-s			create horizontal split (zelfde als :split)
 " C-w-q			quit current split
-
-" Do a quicksearch, via / of ?
-" / zoek van boven naar beneden (n is next down; N andere richting)
-" ? zoek van beneden naar boven (n is next up; N andere richting)
-
-" Zoek en vervang:
-" Shift-3 op eerste letter van woord, zoekt alle occurences van het hele woord
 
 " Let op de range (% staat voor hele buffer)
 " In heel de buffer :%s/zoek/vervang/gc (g=all occurences, c=confirm)
