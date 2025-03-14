@@ -25,8 +25,8 @@
 
 " Changes
 " changelist for overview :changes
-" g; (go to [count] older position in change list
-" g, (go to [count] newer position in change list
+" g; (go to [count] older position in change list)
+" g, (go to [count] newer position in change list)
 
 " Disable (healthcheck on) providers
 let g:loaded_ruby_provider = 0
@@ -92,10 +92,8 @@ call RPA_CS("default")
 
 " Remaps to Visual-Block-mode (Columns) 
 nnoremap <leader>b <C-v>
-xnoremap bb <Esc>
-
-" Remaps to leaderkey; sysdefault is backslash \
-nmap , <leader>
+xnoremap <leader>b <C-v>
+xnoremap bb <nop>
 
 " Map <Ctrl-c> to <nop>, safety to prevent killing processes unintentionally
 nnoremap <C-c> <nop>
@@ -119,10 +117,9 @@ nnoremap q <nop>
 " Maar in de nnoremap-toestand herleid naar :quit
 noremap! <C-z> <nop>
 nnoremap <C-z> :quit<CR>
-nnoremap <C-b> :suspend<CR>
+nnoremap <C-p> :suspend<CR>
 
-" disable jump/move to previous and next line
-nnoremap <C-p> <nop>
+" disable jump/move to next line
 nnoremap <C-n> <nop>
 
 " Show registers
@@ -139,6 +136,7 @@ nnoremap m v
 xnoremap m <Esc>
 nnoremap v V
 xnoremap v <Esc>
+nnoremap <leader>v <nop>
 
 " Vangnet-mechanismen
 set swapfile
@@ -195,6 +193,8 @@ nnoremap <leader>z :quit<CR>
 nnoremap <C-q> :bd<CR>
 nnoremap <C-s> :w<CR>
 nnoremap <C-x> :x<CR>
+nnoremap <C-b> <C-v>
+xnoremap <C-b> <C-v>
 
 " Remaps for jumping to begin-middle-end of file
 nnoremap ff gg
