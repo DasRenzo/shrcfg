@@ -19,7 +19,7 @@ source "/home/rens/.fzf/shell/completion.bash"
 # User can read the files in subdir 'shell' (for the above mentioned key bindings and auto-cempletion commands)
 
 # If fd exists; we use it as the search-engine and set some nice options.
-# Otherwise with the standard value in fzf-default (ev), fzf uses 'find' as its search-engine, lacking some options (view: symlinks, dotfiles)
+# Otherwise with the standard value in fzf-default (ev), fzf uses 'find' as its search-engine, which is slower.
 # Instructions for package fd-find:
 # sudo apt install fd-find (let op: package heet 'fd-find', maar de binary heet 'fdfind')
 # dan vanuit /usr/bin: sudo ln -s /usr/bin/fdfind fd
@@ -28,6 +28,7 @@ source "/home/rens/.fzf/shell/completion.bash"
 if type fd &>/dev/null; then
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude proc --exclude snap --exclude .cache --exclude .undodir --exclude .git 2> /dev/null'
 fi
+# if 'fd' is not installed on the system, we fall back to 'find' (which is slower)
 
 # force hotkey CTRL-t to follow the set FZF_DEFAULT_COMMAND (in previous line)
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
