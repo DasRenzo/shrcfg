@@ -2,6 +2,7 @@
 
 # shelloption globbing
 shopt -s globstar
+
 # maakt zoeken naar regular (not hidden) items makkelijker
 # ls **/*rens*
 # where **/ represents any folder recursively, and *rens* any file which has 'rens' in its name
@@ -9,10 +10,11 @@ shopt -s globstar
 # for the record: minimal rescue-path; it's best to use standardpath, and if needed extend
 # export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
 
-#Set umask mode
+# umask mode
 umask 0027
 
 # path-extension(s)
+# todo: je zou een array van paden kunnen maken
 MYPATHDIR=$HOME/bin
 if [ -d $MYPATHDIR ]
 then
@@ -23,11 +25,15 @@ fi
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
+# fzf-trics
+alias vuf='nvim $(fzf)'
+alias lfuc='command ls -a | fzf | xargs -I {} cat {}'
+
 # convenience-aliases
 alias secdoc='nvim /auks/kbrpa/documentatie/security.txt'
 alias netdoc='nvim /auks/kbrpa/documentatie/networking.txt'
 
-# use 'gio trash' for removing files/dirs in Terminal to a user's Trashcan; works recursively; evt uitbreidbaar met -f (force)
+# use 'gio trash' for removing files/dirs in terminal to a user's trashcan; works recursively; uitbreidbaar met -f (force)
 alias tr='gio trash'
 
 # backup-scripts
@@ -41,18 +47,18 @@ alias ..='cd ..'
 alias cd...='cd .. && cd ..'
 alias ...='cd .. && cd ..'
 
+# mijn dirs
 alias auks='cd /auks && ls'
 alias srpa='cd /auks/scripts/produktie && ls'
 alias frpa='cd /auks/scripts/produktie/firewall && ls'
 alias home='cd ~ && ls'
 alias jau='cd /jau && ls'
 alias shrcfg='cd /shrcfg && ls'
-
 alias doc='cd /auks/kbrpa/documentatie && ls'
-alias phpb='cd /opt/lampp/htdocs/phpbook && ls'
 alias scr='cd ~/Pictures/Screenshots && ls'
 
-# nvim load cfgfile aliases
+# nvim en cfgfile-launchers
+alias vim='nvim'
 alias vimba='nvim ~/.bashrc'
 alias vimrc='nvim ~/.vimrc'
 alias vimi='nvim ~/.config/nvim/init.vim'
@@ -61,39 +67,34 @@ alias vimbr='nvim ~/.config/broot/conf.hjson'
 alias vimve='nvim ~/.config/broot/verbs.hjson'
 alias vimki='nvim ~/.config/kitty/kitty.conf'
 
-# rpa-lijstjes
-alias studie='nvim /auks/studie/studie.tdw'
-
-# bunch of aliases
-alias vim='nvim'
+# exit-codes
 alias e?='echo $?'
-alias fbat='fzf | xargs -I{} batcat {}'
-alias sv='nvim $(fzf)'
-alias cl='clear'
+
+# environment-vars
+alias ep='echo $PATH'
+
+# sudo en su
 alias si='sudo -i'
 alias sus='sudo -s'
 alias su='su -l'
-alias sudoi='sudo -i'
-alias lb='locate -b'
+
+# package management
 alias install='sudo apt install'
 alias lpi='apt list --installed | less' #lokaal geinstalleerde pakketjes
 alias csapt='apt-cache search --names-only' #zoek package existentie in all (local) repos; hoeft niet te zijn geinstalleerd
 alias sapt='apt search'
 alias aptar='sudo apt autoremove'
-alias lsmount='mount | column -t | less'
-alias cpu10='ps -L aux | sort -nr -k 3 | head -10'
-alias mem10='ps -L aux | sort -nr -k 4 | head -10'
-alias rfind='find / -name 2> /dev/null'
-alias hfind='find ~ -name 2> /dev/null'
-alias sb='source ~/.bashrc'
-alias pic='feh'
-alias ep='echo $PATH'
-alias pipup='python3 -m pip install --upgrade'
-alias pipus='python3 -m pip install --user'
 alias upgr='sudo apt update && sudo apt upgrade'
+
+# source
+alias sb='source ~/.bashrc'
+
+# network
 alias ssp='sudo ss -ltnp | rg' #show open ports with processes
-alias ilampp='sudo /opt/lampp/lampp start'
-alias qlampp='sudo /opt/lampp/lampp stop'
+
+# find
+alias rfind='find / -iname 2> /dev/null'
+alias hfind='find ~ -iname 2> /dev/null'
 
 # git aliases
 alias gcl='git config --list --show-origin' #list config with file-origin for current values
@@ -114,18 +115,6 @@ alias grr='git remote rename' #rename an existing shortname (old ==> new)
 alias gco='git checkout' #checkout or switch to a different commit/branche
 alias grh='git reset --hard' #reset project to a previous commit, discarding the more recent commits
 
-# alias for emacsclient that creates a frame; for config-changes to take effect you must logoff/logon, because the server must reload the config(s)
-alias ec='emacsclient -c -e "(select-frame-set-input-focus (selected-frame))"'
-# enw starts emacs with 'no-window-system' (terminalversion)
-alias enw='emacs -nw'
-# other emacs aliasses
-alias gem='cd /shrcfg/emacs && ls'
-alias emi='emacs /shrcfg/emacs/init.el'
-
-# python
-# add to PATH for 'pytest' for testing stuff in python3
-# [[ ":$PATH:" != *"$HOME/.local/bin"* ]] && PATH="${PATH}:$HOME/.local/bin"
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -140,8 +129,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=2500
+HISTFILESIZE=5000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
