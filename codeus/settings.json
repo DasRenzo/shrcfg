@@ -1,7 +1,5 @@
 {
     "window.customTitleBarVisibility": "auto",
-    "workbench.activityBar.location": "top",
-    "workbench.sideBar.location": "right",
     "explorer.confirmDragAndDrop": false,
     "chat.editing.alwaysSaveWithGeneratedChanges": true,
     "liveServer.settings.donotShowInfoMsg": true,
@@ -15,5 +13,14 @@
     "editor.minimap.enabled": false,
     "[markdown]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "editor.stickyScroll.enabled": false,
+    "workbench.activityBar.location": "top",
+    "workbench.startupEditor": "none",
+    "workbench.sideBar.location": "right",
+    "chat.commandCenter.enabled": false,
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "explorer.confirmDelete": false
 }

@@ -1,10 +1,6 @@
 // Place your key bindings in this file to override the defaults
 [
     {
-        "key": "ctrl+meta+k",
-        "command": "workbench.action.openGlobalKeybindings"
-    },
-    {
         "key": "ctrl+k ctrl+s",
         "command": "-workbench.action.openGlobalKeybindings"
     },
@@ -55,23 +51,169 @@
         "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
     },
     {
+        "key": "ctrl+enter",
+        "command": "editor.action.insertLineAfter",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "-editor.action.insertLineAfter",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+enter",
+        "command": "editor.action.insertLineBefore",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+enter",
+        "command": "-editor.action.insertLineBefore",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+alt+l",
+        "command": "-workbench.action.quickchat.toggle",
+        "when": "chatIsEnabled"
+    },
+    {
+        "key": "ctrl+meta+r",
+        "command": "workbench.action.files.revealActiveFileInWindows"
+    },
+    {
+        "key": "ctrl+k r",
+        "command": "-workbench.action.files.revealActiveFileInWindows"
+    },
+    {
+        "key": "ctrl+meta+s",
+        "command": "workbench.action.toggleStatusbarVisibility"
+    },
+    {
+        "key": "ctrl+f6",
+        "command": "workbench.action.openGlobalKeybindings"
+    },
+    {
+        "key": "ctrl+f1",
+        "command": "workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+shift+a",
+        "command": "-codeium.openChatView",
+        "when": "false"
+    },
+    {
+        "key": "ctrl+alt+a",
+        "command": "-codeium.openChatView",
+        "when": "true"
+    },
+    {
+        "key": "ctrl+meta+u",
+        "command": "codeium.openChatView"
+    },
+    {
+        "key": "alt+meta+l",
+        "command": "codeium.chatAboutBlock",
+        "when": "editorTextFocus && !inlineSuggestionsVisible"
+    },
+    {
+        "key": "alt+l",
+        "command": "-codeium.chatAboutBlock",
+        "when": "editorTextFocus && !inlineSuggestionsVisible"
+    },
+    {
+        "key": "ctrl+shift+i",
+        "command": "-editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+    },
+    {
+        "key": "alt+b alt+n",
+        "command": "extension.liveServer.goOffline",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+l alt+c",
+        "command": "-extension.liveServer.goOffline",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+b alt+o",
+        "command": "extension.liveServer.goOnline",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+l alt+o",
+        "command": "-extension.liveServer.goOnline",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+/",
+        "command": "editor.action.commentLine",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+meta+j",
+        "command": "highlight-matching-tag.jumpToMatchingTag"
+    },
+    {
+        "key": "ctrl+meta+w",
+        "command": "workbench.action.openWorkspace"
+    },
+    {
+        "key": "ctrl+meta+left",
+        "command": "workbench.action.navigateBack",
+        "when": "canNavigateBack"
+    },
+    {
+        "key": "ctrl+alt+-",
+        "command": "-workbench.action.navigateBack",
+        "when": "canNavigateBack"
+    },
+    {
+        "key": "browserback",
+        "command": "-workbench.action.navigateBack",
+        "when": "canNavigateBack"
+    },
+    {
+        "key": "ctrl+meta+right",
+        "command": "workbench.action.navigateForward",
+        "when": "canNavigateForward"
+    },
+    {
+        "key": "ctrl+shift+-",
+        "command": "-workbench.action.navigateForward",
+        "when": "canNavigateForward"
+    },
+    {
+        "key": "ctrl+meta+o",
+        "command": "editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+    },
+    {
+        "key": "ctrl+alt+o",
+        "command": "-workbench.action.remote.showMenu"
+    },
+    {
+        "key": "ctrl+meta+v",
+        "command": "editor.emmet.action.removeTag"
+    },
+    {
+        "key": "ctrl+meta+f",
+        "command": "editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+    },
+    {
+        "key": "ctrl+meta+m",
+        "command": "highlight-matching-tag.jumpToMatchingTag"
+    },
+    {
         "key": "ctrl+meta+c",
-        "command": "workbench.action.chat.openEditSession",
-        "when": "chatEditingParticipantRegistered && view != 'workbench.panel.chat.view.edits'"
+        "command": "editor.emmet.action.toggleComment"
     },
     {
-        "key": "ctrl+shift+alt+i",
-        "command": "-workbench.action.chat.openEditSession",
-        "when": "chatEditingParticipantRegistered && view != 'workbench.panel.chat.view.edits'"
+        "key": "ctrl+meta+s",
+        "command": "livePreview.start.externalPreview.atFile"
     },
     {
-        "key": "ctrl+meta+c",
-        "command": "workbench.panel.chatEditing",
-        "when": "workbench.panel.chat.view.edits.active"
-    },
-    {
-        "key": "ctrl+shift+alt+i",
-        "command": "-workbench.panel.chatEditing",
-        "when": "workbench.panel.chat.view.edits.active"
+        "key": "ctrl+meta+p",
+        "command": "livePreview.start.externalPreview.atFile"
     }
 ]

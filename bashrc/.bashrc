@@ -67,7 +67,7 @@ alias studie='nvim /auks/studie/studie.tdw'
 # bunch of aliases
 alias vim='nvim'
 alias e?='echo $?'
-alias se='emacs $(fzf)'
+alias fbat='fzf | xargs -I{} batcat {}'
 alias sv='nvim $(fzf)'
 alias cl='clear'
 alias si='sudo -i'
