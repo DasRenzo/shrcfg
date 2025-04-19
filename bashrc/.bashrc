@@ -101,6 +101,7 @@ alias gst='git status' #status
 alias gcam='git commit -am' #autostage all changes in tracked files, and use an inline message
 alias gada='git add .' #bring all to staging-area
 alias gcm='git commit -m' #what follows between quotes is an inline-commit-message
+alias gps='git push' #push to remote
 
 # git aliases
 alias gcl='git config --list --show-origin' #list config with file-origin for current values
@@ -114,7 +115,6 @@ alias grso='git remote show origin' #show tracking-details for pull/push
 alias grr='git remote rename' #rename an existing shortname (old ==> new)
 alias gco='git checkout' #checkout or switch to a different commit/branche
 alias grh='git reset --hard' #reset project to a previous commit, discarding the more recent commits
-alias gps='git push' #push to remote
 
 # If not running interactively, don't do anything
 case $- in
