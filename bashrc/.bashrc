@@ -96,14 +96,14 @@ alias ssp='sudo ss -ltnp | rg' #show open ports with processes
 alias rfind='find / -iname 2> /dev/null'
 alias hfind='find ~ -iname 2> /dev/null'
 
+# git aliases - meest gebruikt
+alias gst='git status' #status
+alias gcam='git commit -am' #autostage all changes in tracked files, and use an inline message
+alias gada='git add .' #bring all to staging-area
+alias gcm='git commit -m' #what follows between quotes is an inline-commit-message
+
 # git aliases
 alias gcl='git config --list --show-origin' #list config with file-origin for current values
-alias gst='git status' #status
-alias gad='git add' #stage; bring to staging-area
-alias gcm='git commit -m' #what follows between quotes is an inline-commit-message
-alias gcv='git commit -v' #use registered editor for commit-message
-alias gcav='git commit -av' #autostage all changes, without using 'git add', and bring up an editor for commit-message
-alias gcam='git commit -am' #autostage all changes, without using 'git add', use inline message
 alias grc='git rm --cached' #untracks a file, but does not delete it from wd
 alias glo='git log --pretty=oneline' #log with one line per commit
 alias gls='git log --stat' #summary log
