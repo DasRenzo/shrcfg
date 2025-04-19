@@ -3,6 +3,11 @@
 
 " Redraw the screen and clear messages: ctrl-l or :mode
 
+" Show filename, chg-status, number of lines and percentage of point: ctrl-g
+
+" Path-completion in insertmode: C-x C-f (kiezen, herhalen)
+" Insert current filename in insertmode: C-r %
+
 " Undo en redo via: u resp ctrl-r
 
 " Quicksearch, via / of ?
@@ -103,20 +108,12 @@ inoremap <C-c> <nop>
 nnoremap <C-f> <nop>
 xnoremap <C-f> <nop>
 
-" Map <Ctrl-j> to j 
-nnoremap <C-j> j
-xnoremap <C-j> j
-
-" Maak Q (ie capital Q) onschadelijk in normal mode
-nnoremap Q <nop>
-
-" Maak q (ie kleine q) onschadelijk in normal mode
-nnoremap q <nop>
+" Alternative for ESC in insertmode for going to normalmode
+inoremap <C-q> <Esc>
 
 " Remap to 'no-operation' on dangerous 'pause-behaviour' when pressing: <C-z>
-" Maar in de nnoremap-toestand herleid naar :quit
-noremap! <C-z> <nop>
-nnoremap <C-z> :quit<CR>
+nnoremap <C-z> <nop>
+inoremap <C-z> <nop>
 nnoremap <C-p> :suspend<CR>
 
 " disable jump/move to next line
@@ -125,11 +122,8 @@ nnoremap <C-n> <nop>
 " Show registers
 nnoremap <leader>r :reg<CR>
 
-" Cycle through tabs
-nnoremap <S-Tab> :tabnext<CR>
-
 " Cycle through buffers
-nnoremap <S-PageUp> :bnext<CR>
+nnoremap <S-Tab> :bnext<CR>
 
 " Remaps for visual-mode AND visual-line-mode
 nnoremap m v
@@ -182,24 +176,23 @@ set incsearch
 " Remaps for basic buffer-handling
 nnoremap <leader>e :Ex<CR>
 nnoremap <leader>t :tab new<CR>
-nnoremap <leader>q :bd<CR>
+nnoremap <leader>q :quit<CR>
+nnoremap <leader>z :quit<CR>
 nnoremap <leader>s :w<CR>
 nnoremap <leader>w <nop>
 nnoremap <leader>x :x<CR>
 nnoremap <leader>g :bd!<CR>
-nnoremap <leader>z :quit<CR>
 
 " Popular ones under ctrl (watch out for different functions of single s and x; hold the ctrl-key)
-nnoremap <C-q> :bd<CR>
+nnoremap <C-q> :quit<CR>
+nnoremap <C-z> :quit<CR>
 nnoremap <C-s> :w<CR>
 nnoremap <C-x> :x<CR>
 nnoremap <C-b> <C-v>
 xnoremap <C-b> <C-v>
 
-" Remaps for jumping to begin-middle-end of file
-nnoremap ff gg
-nnoremap gg 50%
-nnoremap zz G
+" Remaps for jumping to middle of file
+nnoremap zz 50%
 
 " Remap for commenting (das "Kommentar); also a flexible way of throwing in a bunch of double quote(s)
 nnoremap <leader>k I" <Esc><End>

@@ -95,7 +95,7 @@ _fzf_comprun() {
   shift
 
   case "$command" in
-    cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
+    cd)           fzf --preview '' "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
     xdg-open)     fzf --preview 'xdg-open {}'              "$@" ;;

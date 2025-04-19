@@ -1,20 +1,17 @@
 # BASHRC-file, maintained on "ACER"
 
+# package 'tldr' is amazing for shorthand man-info on other packages
+
 # shelloption globbing
 shopt -s globstar
 
-# maakt zoeken naar regular (not hidden) items makkelijker
-# ls **/*rens*
-# where **/ represents any folder recursively, and *rens* any file which has 'rens' in its name
-
-# for the record: minimal rescue-path; it's best to use standardpath, and if needed extend
+# a minimal rescue-path; use standardpath, and if needed extend on the spot
 # export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
 
 # umask mode
 umask 0027
 
 # path-extension(s)
-# todo: je zou een array van paden kunnen maken
 MYPATHDIR=$HOME/bin
 if [ -d $MYPATHDIR ]
 then
@@ -25,6 +22,9 @@ fi
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
+# batcat; don't alter the theme morron; default-theme is the default for a reason
+command -v batcat &> /dev/null && alias bat='batcat' && alias cat='batcat --paging=never'
+
 # fzf-trics
 alias vuf='nvim $(fzf)'
 alias lfuc='command ls -a | fzf | xargs -I {} cat {}'
@@ -32,9 +32,6 @@ alias lfuc='command ls -a | fzf | xargs -I {} cat {}'
 # convenience-aliases
 alias secdoc='nvim /auks/kbrpa/documentatie/security.txt'
 alias netdoc='nvim /auks/kbrpa/documentatie/networking.txt'
-
-# use 'gio trash' for removing files/dirs in terminal to a user's trashcan; works recursively; uitbreidbaar met -f (force)
-alias tr='gio trash'
 
 # backup-scripts
 alias bacgd='/auks/scripts/produktie/backup_to_gd.sh'
@@ -66,6 +63,9 @@ alias vimf='nvim ~/.fzf.bash'
 alias vimbr='nvim ~/.config/broot/conf.hjson'
 alias vimve='nvim ~/.config/broot/verbs.hjson'
 alias vimki='nvim ~/.config/kitty/kitty.conf'
+alias vimgh='nvim ~/.config/ghostty/config'
+alias vimya='nvim ~/.config/yazi/yazi.toml'
+alias ykeys='nvim ~/.config/yazi/keymap.toml'
 
 # exit-codes
 alias e?='echo $?'
@@ -227,4 +227,48 @@ LS_COLORS=$LS_COLORS:'di=1;36:'
 # Symlink the broot-config-file en verb-file in ~/.config/broot naar /shrcfg/broot
 # If br-shellfunction exists, source it:
 [ -f ~/.config/broot/launcher/bash/br ] && source ~/.config/broot/launcher/bash/br
+
+# redirecting output:
+# stdoutput is stroom1: echo 'hello' 1> /dev/null
+# error-output is stroom2: echo 'hello' 2> /dev/null
+# beide stromen in een ampersand: echo 'hello' &> /dev/null
+
+# yazi terminal file manager y-function
+# path-extension(s)
+MYPATHDIR=/snap/yazi/current
+if [ -d $MYPATHDIR ]
+then
+ [[ ":$PATH:" != *"$MYPATHDIR"* ]] && PATH="${PATH}:$MYPATHDIR"
+fi
+
+# the y-function leaves you in the dir that was current when exiting yazi
+# check eerst of 'yazi' aanwezig is
+if command -v yazi &> /dev/null; then
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+fi
+
+# eza (a better ls) als ez
+command -v eza &> /dev/null && alias ez='eza --tree --level=2 --sort=modified'
+
+# gio trash
+# use 'gio trash' for removing files/dirs in terminal to a user's trashcan; works recursively; uitbreidbaar met -f (force)
+# use 'sudo gio trash' for elevated privileges
+
+# oh-my-posh
+if [[ 'true' || ! $GNOME_TERMINAL_SCREEN ]]; then
+command -v oh-my-posh &> /dev/null && eval "$(oh-my-posh init bash --config /shrcfg/omp/stelbent-compact.minimal.omp.json)"
+fi
+
+# zoxide, standard cfg with z and zi (interactive with fzf-search)
+command -v zoxide &> /dev/null && eval "$(zoxide init bash)"
+# zoxide aliases
+alias ze='zoxide edit'
+alias zq='zoxide query -l -s'
 
