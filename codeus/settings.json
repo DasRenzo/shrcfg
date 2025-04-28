@@ -22,5 +22,11 @@
     "[css]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "explorer.confirmDelete": false
+    "explorer.confirmDelete": false,
+    "workbench.editor.enablePreview": false,
+    "git.openRepositoryInParentFolders": "never",
+    "editor.wordWrap": "on",
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+    "editor.guides.bracketPairs": true,
+    "git.blame.statusBarItem.enabled": false
 }

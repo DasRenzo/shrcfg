@@ -110,16 +110,6 @@
         "command": "codeium.openChatView"
     },
     {
-        "key": "alt+meta+l",
-        "command": "codeium.chatAboutBlock",
-        "when": "editorTextFocus && !inlineSuggestionsVisible"
-    },
-    {
-        "key": "alt+l",
-        "command": "-codeium.chatAboutBlock",
-        "when": "editorTextFocus && !inlineSuggestionsVisible"
-    },
-    {
         "key": "ctrl+shift+i",
         "command": "-editor.action.formatDocument",
         "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
@@ -188,10 +178,6 @@
         "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
     },
     {
-        "key": "ctrl+alt+o",
-        "command": "-workbench.action.remote.showMenu"
-    },
-    {
         "key": "ctrl+meta+v",
         "command": "editor.emmet.action.removeTag"
     },
@@ -215,5 +201,29 @@
     {
         "key": "ctrl+meta+p",
         "command": "livePreview.start.externalPreview.atFile"
+    },
+    {
+        "key": "ctrl+shift+q",
+        "command": "workbench.action.gotoSymbol",
+        "when": "!accessibilityHelpIsShown && !accessibleViewIsShown"
+    },
+    {
+        "key": "shift+meta+d",
+        "command": "editor.action.revealDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus"
+    },
+    {
+        "key": "shift+meta+b",
+        "command": "breadcrumbs.focusAndSelect",
+        "when": "breadcrumbsPossible && breadcrumbsVisible"
+    },
+    {
+        "key": "ctrl+shift+insert",
+        "command": "workbench.action.files.saveFiles"
+    },
+    {
+        "key": "ctrl+meta+e",
+        "command": "workbench.action.closeFolder",
+        "when": "emptyWorkspaceSupport && workbenchState != 'empty'"
     }
 ]

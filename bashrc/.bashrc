@@ -102,6 +102,7 @@ alias gcam='git commit -am' #autostage all changes in tracked files, and use an 
 alias gada='git add .' #bring all to staging-area
 alias gcm='git commit -m' #what follows between quotes is an inline-commit-message
 alias gps='git push' #push to remote
+alias gpu='git push' #push to remote
 
 # git aliases
 alias gcl='git config --list --show-origin' #list config with file-origin for current values
